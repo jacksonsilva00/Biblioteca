@@ -17,13 +17,12 @@ import java.util.List;
  */
 public class DataBase extends SQLiteOpenHelper {
     //private static final String TAG = "sql";
-    private static final String name = "bibliotecaDB.sqlite";
-    private static final int version = 1;
+    private static final String name_banco = "bibliotecaDB.sqlite";
+    private static final int version_banco = 1;
 
     public DataBase(Context context) {
-        super(context, name, null, version);
+        super(context, name_banco, null, version_banco);
     }
-
     @Override
     public void onCreate(SQLiteDatabase db) {
         //Log.d(TAG,);
@@ -81,7 +80,7 @@ public class DataBase extends SQLiteOpenHelper {
     }
 
     private List<Livro> toList(Cursor cursor) {
-        List<Livro> livros = new ArrayList<>();
+        List<Livro> livros = new ArrayList<Livro>();
         if(cursor.moveToFirst()){
             do{
                 Livro livro =  new Livro();

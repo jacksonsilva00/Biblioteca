@@ -13,5 +13,9 @@
     <string name="codigo">Codigo</string>
     <string name="salvo">Livro Salvo</string>
     <string name="errosalve">Erro ao salvar</string>
+    <string name="alterarlivro">Alterando Livros</string>
+    <string name="btnlistar">Listar</string>
+    <string name="btncadastrar">Cadastrar</string>
+    <string name="btnlist1">Ver Livros Existentes</string>
 
 </resources>

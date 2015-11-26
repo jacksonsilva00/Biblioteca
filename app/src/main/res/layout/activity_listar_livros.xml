@@ -10,9 +10,13 @@
     android:orientation="vertical"
     tools:context="br.senac.pi.biblioteca.ListarLivros">
     <TextView
+        android:text="@string/alterarlivro"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        />
     <Button
+        android:text="@string/btnlistar"
         android:id="@+id/btnlistardb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

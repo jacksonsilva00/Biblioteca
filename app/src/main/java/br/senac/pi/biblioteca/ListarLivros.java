@@ -22,7 +22,7 @@ import br.senac.pi.biblioteca.domain.Livro;
 public class ListarLivros extends AppCompatActivity {
     private CursorAdapter dataSource;
     private SQLiteDatabase database;
-    private static final String campos[] = {"autor","titulo","local","id"};
+    private static final String campos[] = {"autor","titulo","local","_id"};
     ListView listView;
     DataBase livrodb;
 
@@ -41,9 +41,9 @@ public class ListarLivros extends AppCompatActivity {
         return new View.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Cursor livro = database.query("livro",campos,null,null,null,null,null,null);
-                if (livro.getCount() > 0){
-                    dataSource = new SimpleCursorAdapter(ListarLivros.this , R.layout.row ,livro, campos , new int[]{R.id.txtTitulo,R.id.txtAutor,R.id.txtLocal});
+                Cursor livros = database.query("livro",campos,null,null,null,null,null,null);
+                if (livros.getCount() > 0){
+                    dataSource = new SimpleCursorAdapter(ListarLivros.this , R.layout.row ,livros, campos , new int[]{R.id.txtTitulo,R.id.txtAutor,R.id.txtLocal});
                     listView.setAdapter(dataSource);
                 }else{
                     Toast.makeText(ListarLivros.this,getString(R.string.action_settings),Toast.LENGTH_LONG).show();
@@ -56,16 +56,16 @@ public class ListarLivros extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final int posicao = position;
                 final long itemSelecionado = id;
-                AlertDialog.Builder builder = new AlertDialog.Builder(getBaseContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder(ListarLivros.this);
                 builder.setTitle(R.string.pergunta);
                 builder.setMessage(R.string.mensagem);
                 builder.setPositiveButton("Editar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         String codigo;
-                        Cursor livro1 = database.query("livro", campos, null, null, null, null, null, null);
-                        livro1.moveToPosition(posicao);
-                        codigo = livro1.getString(livro1.getColumnIndexOrThrow("_id"));
-                        Intent intent = new Intent(getBaseContext(), AlterarLivro.class);
+                        Cursor livro = database.query("livro", campos, null, null, null, null, null, null);
+                        livro.moveToPosition(posicao);
+                        codigo = livro.getString(livro.getColumnIndexOrThrow("_id"));
+                        Intent intent = new Intent(ListarLivros.this, AlterarLivro.class);
                         intent.putExtra("id", codigo);
                         startActivity(intent);
                         finish();

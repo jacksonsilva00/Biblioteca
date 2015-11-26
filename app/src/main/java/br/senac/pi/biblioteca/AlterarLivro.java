@@ -12,7 +12,6 @@ import android.widget.TextView;
 import br.senac.pi.biblioteca.domain.DataBase;
 
 public class AlterarLivro extends AppCompatActivity {
-
     private DataBase livrodb;
     private SQLiteDatabase db;
     private EditText edtAlterarTitulo,edtAlterarAutor,edtAlterarLocal;
@@ -26,15 +25,15 @@ public class AlterarLivro extends AppCompatActivity {
         id = getIntent().getStringExtra("id");
         livrodb = new DataBase(this);
         txtIdLivro = (TextView) findViewById(R.id.txtIdLivro);
-        edtAlterarTitulo = (EditText) findViewById(R.id.edtTitulo);
-        edtAlterarAutor = (EditText) findViewById(R.id.edtAutor);
-        edtAlterarLocal = (EditText) findViewById(R.id.edtLocal);
+        edtAlterarTitulo = (EditText) findViewById(R.id.edtaltTitulo);
+        edtAlterarAutor = (EditText) findViewById(R.id.edtaltAutor);
+        edtAlterarLocal = (EditText) findViewById(R.id.edtaltLocal);
         cursor = mostralivro(Integer.parseInt(id));
         txtIdLivro.setText(cursor.getString(cursor.getColumnIndexOrThrow("_id")));
         edtAlterarTitulo.setText(cursor.getString(cursor.getColumnIndexOrThrow("titulo")));
         edtAlterarAutor.setText(cursor.getString(cursor.getColumnIndexOrThrow("autor")));
         edtAlterarLocal.setText(cursor.getString(cursor.getColumnIndexOrThrow("local")));
-        findViewById(R.id.btnListar).setOnClickListener(alterarlivro());
+        findViewById(R.id.btnAlterarLivro).setOnClickListener(alterarlivro());
     }
     private Cursor mostralivro(int id){
         db = livrodb.getWritableDatabase();
